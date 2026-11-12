@@ -1,29 +1,46 @@
-# Polly — Catatan Belajar (source)
+# Polly — Catatan Belajar
 
-Source code situs https://sxpistols.github.io/pollywantsacracker/
-(repo: sxpistols/pollywantsacracker, branch `main` berisi hasil build).
+Catatan pelajaran harian: cybersecurity, bahasa Prancis, bahasa Inggris,
+dan AI Engineer. Situs ini: https://sxpistols.github.io/pollywantsacracker/
 
-4 jalur belajar: cybersecurity (Senin–Jumat 07.00), Prancis (setiap hari
-07.30), Inggris (setiap hari 08.10), AI Engineer (Senin–Jumat 10.30).
+## Isi
 
-## Perintah
+- **Cybersecurity** — Senin–Jumat 07.00 WIB
+- **Français** — setiap hari 05.00 WIB
+- **English** — setiap hari 06.00 WIB
+- **AI Engineer** — Senin–Jumat 10.30 WIB
 
-```bash
-npm install     # sekali saja
-npm run dev     # pengembangan lokal
-npm run build   # hasil di dist/
-```
+Setiap pelajaran punya halamannya sendiri: daftar bisa dicari lewat kolom
+pencarian, dan pelajaran baru muncul sebagai kartu/baris baru.
 
-## Menambah pelajaran baru
+## Cara menambah pelajaran baru
 
-1. Tambah satu file `.md` di `lessons/` (lihat `public/README.md` untuk format).
-2. `npm run build`
-3. Push isi `dist/` ke `main` (lihat catatan sync di samping folder ini).
+1. Tambah satu file Markdown di folder `lessons/`, contoh nama:
+   `en-04-to-be.md` atau `cyber-08-keamanan-hp.md`.
+2. Isi frontmatter di atas file:
+   ```yaml
+   ---
+   lang: en
+   number: 4
+   date: 2026-11-11
+   title: Kata Ganti & To Be
+   subtitle: I am, you are, he/she/it is
+   keywords: kata ganti to be pronoun am are is
+   ---
+   ```
+   Nilai `lang` yang tersedia: `cyber`, `fr`, `en`, `ai`.
+3. Tulis isi pelajaran di bawah frontmatter, format Markdown biasa
+   (heading `##`, daftar, tabel, kutipan `>`, kode ```python).
+4. Kalau ini topik berikutnya, perbarui juga `next` di
+   `src/lib/lessons.js` ke topik sesudahnya.
+5. Build: `npm run build` — hasilnya di `dist/`.
+6. Push isi `dist/` ke branch `main` repo ini (GitHub Pages mengambil dari
+   `main`, root). Pelajaran baru langsung tampil.
 
-## Desain
+## Teknologi
 
-Editorial minimalis (skill: design-taste-frontend, anti-slop): kertas
-hangat `#faf7f2`, tinta `#1e1c19`, aksen muted per jalur — cybersecurity
-`#3a5a44`, Prancis `#2e4e6b`, Inggris `#a85b38`, AI Engineer `#8a6d2b`.
-Font Newsreader + Inter. Tanpa gradien, tanpa animasi scroll, tanpa
-dekorasi.
+- Svelte 5 + Vite (static build, hash routing — tidak butuh server)
+- Font: Newsreader (judul) + Inter (isi), via Google Fonts
+- Desain: editorial minimalis — kertas hangat, tinta gelap, satu aksen
+  muted per jalur (cybersecurity hijau, Prancis biru, Inggris terakota,
+  AI Engineer kuning gelap)
